@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
-
     protected $guarded=[];
 
-    public function post(){
+
+    public function Post(){
 
         return $this->belongsTo(Post::class);
-
+        
     }
 
 }

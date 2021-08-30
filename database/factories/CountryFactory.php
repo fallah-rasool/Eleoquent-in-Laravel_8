@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Image;
+use App\Models\Country;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ImageFactory extends Factory
+class CountryFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Image::class;
+    protected $model = Country::class;
 
     /**
      * Define the model's default state.
@@ -22,8 +22,7 @@ class ImageFactory extends Factory
     public function definition()
     {
         return [
-            'image' => $this->faker->imageUrl(),
-            'user_id' => $this->faker->numberBetween(1,3),
+            'country'=>$this->faker->country,
         ];
     }
 }
