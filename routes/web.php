@@ -5,6 +5,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 use Monolog\Handler\RotatingFileHandler;
 
@@ -28,6 +29,8 @@ Route::resource('/post',PostController::class);
 Route::resource('/comment',CommentController::class);
 Route::resource('/category',CategoryController::class);
 Route::resource('/product',ProductController::class);
+
+Route::resource('/role',RoleController::class);
 
 
 
