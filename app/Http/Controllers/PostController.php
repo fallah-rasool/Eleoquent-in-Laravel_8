@@ -17,7 +17,12 @@ class PostController extends Controller
      /**
       * get post for image 1
       */ 
-    // return Image::findOrfail(1)->Imageable;
+      /**
+       * برای فرداخوانی داده از سمت جدول عکس ها باید  نام تابعی که در مدل عکس  در نظر گرفته ایم را صدا کنیم 
+       */
+    // return Image::findOrfail(1)->image_poly;
+
+     return Image::findOrfail(1)->imagePoly;
      
     }
 

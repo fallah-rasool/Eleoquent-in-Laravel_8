@@ -12,6 +12,6 @@ class Product extends Model
 
     public function image(){
 
-        return $this->morphOne(Image::class,'imageable');
+        return $this->morphOne(Image::class,'image_poly');
     }
 }

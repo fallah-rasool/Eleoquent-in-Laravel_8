@@ -21,9 +21,15 @@ class Image extends Model
      *         |<-----> slider
      *        
      */
+    /**
+     * برای نام گذاری تابع باید دقیقا نامی باشد که در مایگریشن قرار دادیم 
+     *برای نام گذاری از 
+     * imagePolyیا image_poly
+     * استفاده کرد
+     */
 
    
-    public function Imageable(){
+    public function imagePoly(){
 
         return $this->morphTo();
 
