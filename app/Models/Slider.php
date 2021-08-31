@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Slider extends Model
 {
     use HasFactory;
-    protected $guardad=[];
+    protected $guarded=[];
 
     public function image(){
 

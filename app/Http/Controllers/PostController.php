@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Models\Post;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -22,7 +23,28 @@ class PostController extends Controller
        */
     // return Image::findOrfail(1)->image_poly;
 
-     return Image::findOrfail(1)->imagePoly;
+    //  return Image::findOrfail(1)->imagePoly;
+
+
+    /**
+     * اضافه کردن عکس برای جدول محصولات در جدول عکس ها توسط  رابطه پلی‌مورفیک یک به یک
+     */
+
+        // Product::findOrfail(2)->image()->create([
+        //     "image"=>"ProducImage-2.jpg",
+        // ]);
+
+        /**
+         * فرض کنید می  واهیم اصلاعات محصول جدید را به جدول محصولات اضافه کنیم اما عکس این محصول جدید باید در جدول عکس ها ذخیره شود ابتدا محصول را درج می کنیم و سپس با گرفتن شناسه اخرین محصول عکس ان را نیز  در جدول عکس ها اضافه می کنیم 
+         */
+        $lastproduct=Product::orderBy('id','desc')->first();
+
+
+        Product::findOrfail($lastproduct->id)->image()->create([
+            "image"=>"ProducImage-3.jpg",
+        ]);
+
+
      
     }
 
