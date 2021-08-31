@@ -22,21 +22,9 @@
         <section class="form-group ">
             <label for="my-input">image</label>
             <input id="my-input" class="" type="file" name="image">
-            <img width="50" src="/images/products/{{$product->image }}" alt="" srcset="">
+            <img width="50" src="/images/products/{{$product->image->image }}" alt="" srcset="">
         </section>
-        <section class="form-group">
-            <label for="my-input">category</label>
-        
-            <select name="category_id" id="" class="form-control">
 
-                @forelse ($allCategry as $item)
-
-                    <option value="{{ $item->id }}"  @if ( $item->id == $product->category_id ) selected   @endif >{{ $item->title }}</option>
-                @empty
-                    <h3>not  data category</h3>
-                @endforelse
-            </select>
-        </section>
         <section class="form-group">            
             <button class="btn btn-success"> send</button>   
         </section>

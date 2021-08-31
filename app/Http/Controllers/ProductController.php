@@ -7,79 +7,103 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+
+        $allProduct=Product::all();
+        return view('product.index',compact('allProduct'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+
+        $this->validate($request,[
+            'name' => 'required|string',
+            'price' => 'required',
+            'image' => 'required|mimes:jpeg,jpg,png,gif|max:10000',
+         ]);
+
+        $file=$request->file('image');
+        $nameimage=""; 
+        if(!empty($file)){
+             $nameimage=time().".".$file->getClientOriginalExtension();
+             $file->move('images/products',$nameimage);
+        }
+
+        Product::create([
+           "name"=>$request->name,
+           "price"=>$request->price,
+        ]);
+
+        $lastproduct=Product::orderBy('id','desc')->first();
+        
+        Product::findOrfail($lastproduct->id)->image()->create([
+            "image"=>$nameimage,
+        ]);
+
+        return redirect()->route('product.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Product $product)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Product $product)
-    {
-        //
+    {      
+        return view('product.edit',compact('product'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Product $product)
     {
-        //
+       
+        $oldImage=Product::findOrfail($product->id)->image->image;
+
+       
+        $file=$request->file('image');
+        $nameimage="";
+
+
+        if(!empty($file)){
+            unlink('images/products/'.$oldImage);
+            $nameimage=time().".".$file->getClientOriginalExtension();     
+            $file->move('images/products',$nameimage);
+        } else{
+            $nameimage=$oldImage;
+        }
+        Product::where('id',$product->id)->update([
+            'name'=>$request->name,
+            'price'=>$request->price,        
+        ]);
+
+        Product::findOrfail($product->id)->image()->update([
+
+            "image"=>$nameimage,
+        ]);
+        return redirect()->route('product.index');
+        
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Product $product)
     {
-        //
+
+       $image=  Product::find($product->id)->image->image;
+
+       Product::find($product->id)->image()->delete();
+
+       Product::destroy($product->id);
+
+       unlink('images/products/'.$image);
+
+       return back();
     }
 }

@@ -37,14 +37,15 @@ class PostController extends Controller
         /**
          * فرض کنید می  واهیم اصلاعات محصول جدید را به جدول محصولات اضافه کنیم اما عکس این محصول جدید باید در جدول عکس ها ذخیره شود ابتدا محصول را درج می کنیم و سپس با گرفتن شناسه اخرین محصول عکس ان را نیز  در جدول عکس ها اضافه می کنیم 
          */
-        $lastproduct=Product::orderBy('id','desc')->first();
+        // $lastproduct=Product::orderBy('id','desc')->first();
 
 
-        Product::findOrfail($lastproduct->id)->image()->create([
-            "image"=>"ProducImage-3.jpg",
-        ]);
+        // Product::findOrfail($lastproduct->id)->image()->create([
+        //     "image"=>"ProducImage-3.jpg",
+        // ]);
 
 
+        
      
     }
 

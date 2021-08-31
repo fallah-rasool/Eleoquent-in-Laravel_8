@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use Monolog\Handler\RotatingFileHandler;
 
@@ -20,6 +21,8 @@ Route::get('/', function () {
 });
 
 Route::resource('/post',PostController::class);
+
+Route::resource('/product',ProductController::class);
 
 
 
