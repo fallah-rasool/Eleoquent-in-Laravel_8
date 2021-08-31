@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\CountryController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use Monolog\Handler\RotatingFileHandler;
 
@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/country',CountryController::class);
+Route::resource('/post',PostController::class);
 
 
 

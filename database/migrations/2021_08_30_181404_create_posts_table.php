@@ -14,14 +14,9 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->id(); 
-            $table->string('title'); 
-            $table->string('image'); 
-            $table->string('discription'); 
-            $table->foreignId('country_id')
-            ->constrained()
-            ->onDelete('CASCADE'); 
-            
+            $table->id();
+            $table->string('title');
+            $table->string('description');
             $table->timestamps();
         });
     }
