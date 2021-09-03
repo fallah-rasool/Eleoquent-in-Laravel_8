@@ -14,7 +14,7 @@
 <body>
     
     <section class="container-fluid">
-        <section class="row bg-secondary p-3">
+        <section class="row p-3 bg-secondary">
             @yield('content');
         </section>
     </section>
